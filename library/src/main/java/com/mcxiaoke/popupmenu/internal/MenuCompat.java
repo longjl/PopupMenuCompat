@@ -1,4 +1,4 @@
-package com.mcxiaoke.popupmenucompat.internal;
+package com.mcxiaoke.popupmenu.internal;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -7,12 +7,11 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
-import com.mcxiaoke.popupmenucompat.MenuAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuCompat implements Menu {
+class MenuCompat implements Menu {
     protected final Context mContext;
     protected final MenuAdapter mAdapter;
 

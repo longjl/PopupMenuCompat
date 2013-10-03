@@ -1,4 +1,4 @@
-package com.mcxiaoke.popupmenucompat;
+package com.mcxiaoke.popupmenu;
 
 import android.content.Context;
 import android.content.res.Resources;

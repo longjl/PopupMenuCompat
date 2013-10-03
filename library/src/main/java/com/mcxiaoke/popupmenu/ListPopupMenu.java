@@ -1,4 +1,4 @@
-package com.mcxiaoke.popupmenucompat;
+package com.mcxiaoke.popupmenu;
 
 import android.content.Context;
 import android.view.Menu;
@@ -11,7 +11,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListPopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
-import com.mcxiaoke.popupmenucompat.internal.MenuHelper;
+import com.mcxiaoke.popupmenu.internal.MenuAdapter;
+import com.mcxiaoke.popupmenu.internal.MenuHelper;
 
 public class ListPopupMenu implements OnDismissListener, OnItemClickListener, OnTouchListener {
 

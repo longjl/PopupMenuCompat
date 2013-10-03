@@ -1,7 +1,7 @@
-package com.mcxiaoke.popupmenucompat.internal;
+package com.mcxiaoke.popupmenu.internal;
 
 import android.content.Context;
-import com.mcxiaoke.popupmenucompat.MenuAdapter;
+import android.view.Menu;
 
 /**
  * User: mcxiaoke
@@ -13,11 +13,11 @@ public final class MenuHelper {
     private MenuHelper() {
     }
 
-    public static MenuCompat createMenu(Context context) {
+    public static Menu createMenu(Context context) {
         return new MenuCompat(context);
     }
 
-    public static MenuCompat createMenu(Context context, MenuAdapter adapter) {
+    public static Menu createMenu(Context context, MenuAdapter adapter) {
         return new MenuCompat(context, adapter);
     }
 }

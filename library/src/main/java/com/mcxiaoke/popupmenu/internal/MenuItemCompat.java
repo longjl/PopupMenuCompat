@@ -1,4 +1,4 @@
-package com.mcxiaoke.popupmenucompat.internal;
+package com.mcxiaoke.popupmenu.internal;
 
 import android.annotation.TargetApi;
 import android.content.Context;

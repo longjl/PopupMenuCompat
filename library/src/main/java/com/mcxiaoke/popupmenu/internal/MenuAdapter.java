@@ -1,4 +1,4 @@
-package com.mcxiaoke.popupmenucompat;
+package com.mcxiaoke.popupmenu.internal;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.mcxiaoke.popupmenucompat.internal.MenuCompat;
+import com.mcxiaoke.popupmenu.R;
 
 import java.util.ArrayList;
 import java.util.List;

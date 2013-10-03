@@ -1,4 +1,4 @@
-package com.mcxiaoke.popupmenucompat.samples;
+package com.mcxiaoke.popupmenu.samples;
 
 import android.app.Activity;
 import android.os.Bundle;

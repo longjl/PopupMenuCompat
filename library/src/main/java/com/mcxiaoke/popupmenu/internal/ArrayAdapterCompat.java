@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.mcxiaoke.popupmenucompat;
+package com.mcxiaoke.popupmenu.internal;
 
 import android.content.Context;
 import android.widget.BaseAdapter;

@@ -1,6 +1,6 @@
-package com.mcxiaoke.popupmenucompat.tests;
+package com.mcxiaoke.popupmenu.tests;
 
-import com.mcxiaoke.popupmenucompat.samples.Samples;
+import com.mcxiaoke.popupmenu.samples.Samples;
 import android.test.ActivityInstrumentationTestCase2;
 import com.jayway.android.robotium.solo.Solo;
 

@@ -1,11 +1,10 @@
-package com.mcxiaoke.popupmenucompat.internal;
+package com.mcxiaoke.popupmenu.internal;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import com.mcxiaoke.popupmenucompat.MenuAdapter;
 
 import java.util.List;
 
