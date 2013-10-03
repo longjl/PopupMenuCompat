@@ -14,7 +14,7 @@ import android.widget.PopupWindow.OnDismissListener;
 import com.mcxiaoke.popupmenu.internal.PopupMenuAdapter;
 import com.mcxiaoke.popupmenu.internal.MenuHelper;
 
-public class ListPopupMenu implements OnDismissListener, OnItemClickListener, OnTouchListener {
+public class PopupMenuCompat implements OnDismissListener, OnItemClickListener, OnTouchListener {
 
     public enum Style {
         DARK, LIGHT;
@@ -23,8 +23,8 @@ public class ListPopupMenu implements OnDismissListener, OnItemClickListener, On
     private OnMenuItemClickListener mItemClickListener;
     private OnDismissListener mDismissListener;
 
-    private Menu mMenu;
     private final Context mContext;
+    private Menu mMenu;
     private final View mView;
     private final ListPopupWindow mWindow;
 
@@ -37,11 +37,11 @@ public class ListPopupMenu implements OnDismissListener, OnItemClickListener, On
      *
      * @param context Context
      */
-    public ListPopupMenu(final Context context, final View view) {
+    public PopupMenuCompat(final Context context, final View view) {
         mContext = context;
         mView = view;
-        mAdapter = new PopupMenuAdapter(context);
         mMenu = MenuHelper.createMenu(context);
+        mAdapter = new PopupMenuAdapter(context);
         mWindow = ListPopupWindowHelper.newListPopupWindow(context);
         mWindow.setInputMethodMode(ListPopupWindowCompat.INPUT_METHOD_NOT_NEEDED);
         mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
@@ -90,7 +90,9 @@ public class ListPopupMenu implements OnDismissListener, OnItemClickListener, On
         dismiss();
         final MenuItem item = mAdapter.getItem(position);
         if (item.hasSubMenu()) {
-            if (item.getSubMenu().size() == 0) return;
+            if (item.getSubMenu().size() == 0) {
+                return;
+            }
             showMenu(item.getSubMenu());
         } else {
             if (mItemClickListener != null) {
@@ -116,10 +118,10 @@ public class ListPopupMenu implements OnDismissListener, OnItemClickListener, On
 
     /**
      * Set listener for window dismissed. This listener will only be fired if
-     * the quickaction dialog is dismissed by clicking outside the dialog or
+     * the popupmenu dialog is dismissed by clicking outside the dialog or
      * clicking on sticky item.
      */
-    public void setOnDismissListener(final ListPopupMenu.OnDismissListener listener) {
+    public void setOnDismissListener(final PopupMenuCompat.OnDismissListener listener) {
         mWindow.setOnDismissListener(listener != null ? this : null);
         mDismissListener = listener;
     }
@@ -144,20 +146,16 @@ public class ListPopupMenu implements OnDismissListener, OnItemClickListener, On
         mAdapter.setMenu(menu);
         try {
             mWindow.show();
-        } catch (final Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static ListPopupMenu getInstance(final Context context, final View view) {
-        return new ListPopupMenu(context, view);
     }
 
     /**
      * Listener for window dismiss
      */
     public static interface OnDismissListener {
-        public void onDismiss(ListPopupMenu PopupMenu);
+        public void onDismiss(PopupMenuCompat PopupMenu);
     }
 
     /**

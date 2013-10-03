@@ -35,8 +35,6 @@ import java.lang.reflect.Field;
  * to the shared observer that the floating one will be merged into. This would
  * again cause the listener to leak.
  * </ul>
- *
- *  copy from com.actionbarsherlock.internal.widget;
  */
 public class PopupWindowCompat extends PopupWindow {
 
