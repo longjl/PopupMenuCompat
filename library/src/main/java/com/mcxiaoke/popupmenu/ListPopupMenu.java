@@ -7,26 +7,30 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListPopupWindow;
 import android.widget.PopupWindow.OnDismissListener;
-import com.mcxiaoke.popupmenu.internal.MenuAdapter;
+import com.mcxiaoke.popupmenu.internal.PopupMenuAdapter;
 import com.mcxiaoke.popupmenu.internal.MenuHelper;
 
 public class ListPopupMenu implements OnDismissListener, OnItemClickListener, OnTouchListener {
+
+    public enum Style {
+        DARK, LIGHT;
+    }
 
     private OnMenuItemClickListener mItemClickListener;
     private OnDismissListener mDismissListener;
 
     private Menu mMenu;
     private final Context mContext;
-    private final View mDropDownAnchorView;
-    private final ListPopupWindowCompat mWindow;
+    private final View mView;
+    private final ListPopupWindow mWindow;
 
     private boolean mDidAction;
 
-    private final MenuAdapter mAdapter;
+    private final PopupMenuAdapter mAdapter;
 
     /**
      * Constructor for default vertical layout
@@ -35,14 +39,14 @@ public class ListPopupMenu implements OnDismissListener, OnItemClickListener, On
      */
     public ListPopupMenu(final Context context, final View view) {
         mContext = context;
-        mDropDownAnchorView = view;
-        mAdapter = new MenuAdapter(context);
-        mMenu = MenuHelper.createMenu(mContext, mAdapter);
-        mWindow = new ListPopupWindowCompat(context);
-        mWindow.setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
-//		mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        mWindow.setAnchorView(mDropDownAnchorView);
-//		mWindow.setWidth(mContext.getResources().getDimensionPixelSize(R.dimen.popup_window_width));
+        mView = view;
+        mAdapter = new PopupMenuAdapter(context);
+        mMenu = MenuHelper.createMenu(context);
+        mWindow = ListPopupWindowHelper.newListPopupWindow(context);
+        mWindow.setInputMethodMode(ListPopupWindowCompat.INPUT_METHOD_NOT_NEEDED);
+        mWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        mWindow.setAnchorView(mView);
+        mWindow.setWidth(mContext.getResources().getDimensionPixelSize(R.dimen.popup_window_width));
         mWindow.setAdapter(mAdapter);
         mWindow.setOnItemClickListener(this);
         mWindow.setModal(true);
@@ -115,7 +119,7 @@ public class ListPopupMenu implements OnDismissListener, OnItemClickListener, On
      * the quickaction dialog is dismissed by clicking outside the dialog or
      * clicking on sticky item.
      */
-    public void setOnDismissListener(final OnDismissListener listener) {
+    public void setOnDismissListener(final ListPopupMenu.OnDismissListener listener) {
         mWindow.setOnDismissListener(listener != null ? this : null);
         mDismissListener = listener;
     }
@@ -143,6 +147,10 @@ public class ListPopupMenu implements OnDismissListener, OnItemClickListener, On
         } catch (final Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static ListPopupMenu getInstance(final Context context, final View view) {
+        return new ListPopupMenu(context, view);
     }
 
     /**

@@ -11,17 +11,14 @@ import android.view.SubMenu;
 import java.util.ArrayList;
 import java.util.List;
 
-class MenuCompat implements Menu {
+public class MenuCompat implements Menu {
+
     protected final Context mContext;
-    protected final MenuAdapter mAdapter;
+    protected final List<MenuItem> mMenuItems;
 
     public MenuCompat(final Context context) {
-        this(context, null);
-    }
-
-    public MenuCompat(final Context context, final MenuAdapter adapter) {
         mContext = context;
-        mAdapter = adapter;
+        mMenuItems = new MenuItemList();
     }
 
     @Override
@@ -39,9 +36,9 @@ class MenuCompat implements Menu {
         final MenuItem item = new MenuItemCompat(mContext).setGroupId(groupId).setItemId(itemId).setOrder(order)
                 .setTitle(title);
         if (order != 0) {
-            mAdapter.add(order, item);
+            mMenuItems.add(order, item);
         } else {
-            mAdapter.add(item);
+            mMenuItems.add(item);
         }
         return item;
     }
@@ -74,9 +71,9 @@ class MenuCompat implements Menu {
         final SubMenu subMenu = new SubMenuCompat(mContext, item);
         ((MenuItemCompat) item).setSubMenu(subMenu);
         if (order != 0) {
-            mAdapter.add(order, item);
+            mMenuItems.add(order, item);
         } else {
-            mAdapter.add(item);
+            mMenuItems.add(item);
         }
         return subMenu;
     }
@@ -88,7 +85,7 @@ class MenuCompat implements Menu {
 
     @Override
     public void clear() {
-        mAdapter.clear();
+        mMenuItems.clear();
     }
 
     @Override
@@ -98,8 +95,7 @@ class MenuCompat implements Menu {
 
     @Override
     public MenuItem findItem(final int id) {
-        List<MenuItem> menuItems = mAdapter.getAllItems();
-        for (final MenuItem item : menuItems) {
+        for (final MenuItem item : mMenuItems) {
             if (item.getItemId() == id)
                 return item;
             else if (item.hasSubMenu()) {
@@ -113,17 +109,16 @@ class MenuCompat implements Menu {
 
     @Override
     public MenuItem getItem(final int index) {
-        return mAdapter.getItem(index);
+        return mMenuItems.get(index);
     }
 
-    public List<MenuItem> getAllMenuItems() {
-        return mAdapter.getAllItems();
+    public List<MenuItem> getMenuItems() {
+        return mMenuItems;
     }
 
     @Override
     public boolean hasVisibleItems() {
-        List<MenuItem> menuItems = mAdapter.getAllItems();
-        for (final MenuItem item : menuItems) {
+        for (final MenuItem item : mMenuItems) {
             if (item.isVisible()) return true;
         }
         return false;
@@ -147,35 +142,32 @@ class MenuCompat implements Menu {
     @Override
     public void removeGroup(final int groupId) {
         final List<MenuItem> itemsToRemove = new ArrayList<MenuItem>();
-        List<MenuItem> menuItems = mAdapter.getAllItems();
-        for (final MenuItem item : menuItems) {
+        for (final MenuItem item : mMenuItems) {
             if (item.hasSubMenu()) {
                 item.getSubMenu().removeGroup(groupId);
             } else if (item.getGroupId() == groupId) {
                 itemsToRemove.add(item);
             }
         }
-        mAdapter.removeAll(itemsToRemove);
+        mMenuItems.removeAll(itemsToRemove);
     }
 
     @Override
     public void removeItem(final int id) {
         final List<MenuItem> itemsToRemove = new ArrayList<MenuItem>();
-        List<MenuItem> menuItems = mAdapter.getAllItems();
-        for (final MenuItem item : menuItems) {
+        for (final MenuItem item : mMenuItems) {
             if (item.hasSubMenu()) {
                 item.getSubMenu().removeItem(id);
             } else if (item.getItemId() == id) {
                 itemsToRemove.add(item);
             }
         }
-        mAdapter.removeAll(itemsToRemove);
+        mMenuItems.removeAll(itemsToRemove);
     }
 
     @Override
     public void setGroupCheckable(final int group, final boolean checkable, final boolean exclusive) {
-        List<MenuItem> menuItems = mAdapter.getAllItems();
-        for (final MenuItem item : menuItems) {
+        for (final MenuItem item : mMenuItems) {
             if (item.getGroupId() == group) {
                 item.setCheckable(checkable);
                 if (exclusive) {
@@ -187,8 +179,7 @@ class MenuCompat implements Menu {
 
     @Override
     public void setGroupEnabled(final int group, final boolean enabled) {
-        List<MenuItem> menuItems = mAdapter.getAllItems();
-        for (final MenuItem item : menuItems) {
+        for (final MenuItem item : mMenuItems) {
             if (item.getGroupId() == group) {
                 item.setEnabled(enabled);
             }
@@ -198,8 +189,7 @@ class MenuCompat implements Menu {
 
     @Override
     public void setGroupVisible(final int group, final boolean visible) {
-        List<MenuItem> menuItems = mAdapter.getAllItems();
-        for (final MenuItem item : menuItems) {
+        for (final MenuItem item : mMenuItems) {
             if (item.getGroupId() == group) {
                 item.setVisible(visible);
             }
@@ -213,7 +203,13 @@ class MenuCompat implements Menu {
 
     @Override
     public int size() {
-        return mAdapter.getCount();
+        return mMenuItems.size();
     }
 
+    @Override
+    public String toString() {
+        return "MenuCompat{" +
+                "mMenuItems=" + mMenuItems +
+                '}';
+    }
 }

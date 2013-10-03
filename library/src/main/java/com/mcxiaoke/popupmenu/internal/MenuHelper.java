@@ -16,8 +16,4 @@ public final class MenuHelper {
     public static Menu createMenu(Context context) {
         return new MenuCompat(context);
     }
-
-    public static Menu createMenu(Context context, MenuAdapter adapter) {
-        return new MenuCompat(context, adapter);
-    }
 }

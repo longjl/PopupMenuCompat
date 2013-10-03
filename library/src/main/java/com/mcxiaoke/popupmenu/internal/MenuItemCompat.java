@@ -244,10 +244,17 @@ public class MenuItemCompat implements MenuItem {
 		return this;
 	}
 
-	@Override
-	public String toString() {
-		return getTitle() == null ? null : getTitle().toString();
-	}
+    @Override
+    public String toString() {
+        return "MenuItemCompat{" +
+                "title=" + title +
+                ", itemId=" + itemId +
+                ", order=" + order +
+                ", groupId=" + groupId +
+                ", enabled=" + enabled +
+                ", icon=" + icon +
+                '}';
+    }
 
 	MenuItemCompat setGroupId(final int groupId) {
 		this.groupId = groupId;
@@ -273,5 +280,7 @@ public class MenuItemCompat implements MenuItem {
 	public static MenuItem createItem(final Context context, final int id) {
 		return new MenuItemCompat(context).setItemId(id);
 	}
+
+
 
 }

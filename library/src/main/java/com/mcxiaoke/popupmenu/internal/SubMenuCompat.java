@@ -1,37 +1,33 @@
 package com.mcxiaoke.popupmenu.internal;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 final class SubMenuCompat extends MenuCompat implements SubMenu {
     private final MenuItem mMenuItem;
 
     SubMenuCompat(final Context context, final MenuItem menuItem) {
-        super(context, new MenuAdapter(context));
+        super(context);
         mMenuItem = menuItem;
-    }
-
-    @Override
-    public void clearHeader() {
-    }
-
-    @Override
-    public MenuItem findItem(final int id) {
-        List<MenuItem> menuItems = mAdapter.getAllItems();
-        for (final MenuItem item : menuItems) {
-            if (item.getItemId() == id) return item;
-        }
-        return null;
     }
 
     @Override
     public MenuItem getItem() {
         return mMenuItem;
+    }
+
+
+    @Override
+    public void clearHeader() {
     }
 
     @Override
@@ -72,11 +68,6 @@ final class SubMenuCompat extends MenuCompat implements SubMenu {
     public SubMenu setIcon(final int iconRes) {
 
         return this;
-    }
-
-    @Override
-    public void setQwertyMode(final boolean isQwerty) {
-
     }
 
 }

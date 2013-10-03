@@ -10,19 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.mcxiaoke.popupmenu.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public final class MenuAdapter extends ArrayAdapterCompat<MenuItem> {
+public final class PopupMenuAdapter extends ArrayAdapterCompat<MenuItem> {
+
+    private Menu mMenu;
     private LayoutInflater mInflater;
 
-    public MenuAdapter(final Context context) {
-        super(context, new ArrayList<MenuItem>());
-        mInflater = LayoutInflater.from(context);
-    }
-
-    public MenuAdapter(final Context context, List<MenuItem> data) {
-        super(context, data);
+    public PopupMenuAdapter(final Context context) {
+        super(context);
         mInflater = LayoutInflater.from(context);
     }
 
@@ -48,6 +44,7 @@ public final class MenuAdapter extends ArrayAdapterCompat<MenuItem> {
         final ImageView icon = (ImageView) view.findViewById(android.R.id.icon);
         final MenuItem item = getItem(position);
         text.setText(item.getTitle());
+        text.setVisibility(View.VISIBLE);
         icon.setImageDrawable(item.getIcon());
         icon.setVisibility(item.getIcon() != null ? View.VISIBLE : View.GONE);
         return view;
@@ -59,24 +56,27 @@ public final class MenuAdapter extends ArrayAdapterCompat<MenuItem> {
     }
 
     public void setMenu(final Menu menu) {
-        if (menu instanceof MenuCompat) {
-            MenuCompat mc = (MenuCompat) menu;
-            clear();
-            addAll(mc.getAllMenuItems());
+        mMenu = menu;
+        setMenuItems();
+    }
+
+    public void setMenuItems() {
+        if (mMenu instanceof MenuCompat) {
+            MenuCompat menuCompat = (MenuCompat) mMenu;
+            setMenuItems(menuCompat.getMenuItems());
         }
     }
 
-    public boolean setMenuItems(List<MenuItem> items) {
-        if (items == null || items.isEmpty()) {
-            return false;
-        }
+    public void setMenuItems(List<MenuItem> items) {
         clear();
+        if (items == null) {
+            return;
+        }
         for (final MenuItem item : items) {
             if (item.isVisible()) {
                 add(item);
             }
         }
-        return true;
     }
 
 }
