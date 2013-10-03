@@ -1,4 +1,4 @@
 PopupMenuCompat
 ===============
 
-PopupMenuCompat Library
+PopupMenuCompat is a Android compat library for PopupMenu.
