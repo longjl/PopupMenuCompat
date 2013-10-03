@@ -49,7 +49,7 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/mcxiaoke/PopupMenuCompat</url>
+        <url>https://github.com/mcxiaoke/PopupMenuCompat.git</url>
         <connection>scm:git:https://github.com/mcxiaoke/PopupMenuCompat.git</connection>
         <developerConnection>scm:git:git@github.com:mcxiaoke/PopupMenuCompat.git</developerConnection>
         <tag>PopupMenuCompat-1.0.0</tag>
