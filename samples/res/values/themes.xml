@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.Dark" parent="android:Theme">
+        <item name="listPopupWindowStyle">@style/PopupMenuCompatStyle.ListPopupWindow.Dark</item>
+        <item name="dropDownListViewStyle">@style/PopupMenuCompatStyle.DropDownListView.Dark</item>
+    </style>
+
+    <style name="AppTheme.Light" parent="android:Theme.Light">
+        <item name="listPopupWindowStyle">@style/PopupMenuCompatStyle.ListPopupWindow.Light</item>
+        <item name="dropDownListViewStyle">@style/PopupMenuCompatStyle.DropDownListView.Light</item>
+    </style>
+</resources>
