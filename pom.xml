@@ -4,7 +4,7 @@
 
     <groupId>com.mcxiaoke.popupmenu</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>PopupMenuCompat - Parent</name>
     <description>PopupMenuCompat is a Android compat library for PopupMenu.</description>
