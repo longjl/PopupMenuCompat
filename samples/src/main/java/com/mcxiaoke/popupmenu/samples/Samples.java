@@ -3,6 +3,7 @@ package com.mcxiaoke.popupmenu.samples;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -54,7 +55,23 @@ public class Samples extends Activity {
         if (BuildConfig.DEBUG) {
             Log.v(TAG, "showPopupMenu()");
         }
+        final PopupMenuCompat.OnMenuItemClickListener onMenuItemClickListener =
+                new PopupMenuCompat.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        return false;
+                    }
+                };
+        final PopupMenuCompat.OnDismissListener onDismissListener =
+                new PopupMenuCompat.OnDismissListener() {
+                    @Override
+                    public void onDismiss(PopupMenuCompat PopupMenu) {
+
+                    }
+                };
         PopupMenuCompat popupMenu = new PopupMenuCompat(this, view);
+        popupMenu.setOnMenuItemClickListener(onMenuItemClickListener);
+        popupMenu.setOnDismissListener(onDismissListener);
         popupMenu.inflate(R.menu.menu);
         popupMenu.show();
     }
