@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.mcxiaoke.popupmenu</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.3</version>
     </parent>
 
     <artifactId>tests</artifactId>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>com.mcxiaoke.popupmenu</groupId>
             <artifactId>demo</artifactId>
-            <version>1.0.3-SNAPSHOT</version>
+            <version>1.0.3</version>
             <type>apk</type>
             <scope>provided</scope>
         </dependency>
@@ -41,7 +41,7 @@
         <dependency>
             <groupId>com.mcxiaoke.popupmenu</groupId>
             <artifactId>demo</artifactId>
-            <version>1.0.3-SNAPSHOT</version>
+            <version>1.0.3</version>
             <type>jar</type>
             <scope>provided</scope>
         </dependency>

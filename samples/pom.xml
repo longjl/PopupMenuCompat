@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.mcxiaoke.popupmenu</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.3</version>
     </parent>
 
     <artifactId>demo</artifactId>
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.mcxiaoke.popupmenu</groupId>
             <artifactId>library-apklib</artifactId>
-            <version>1.0.3-SNAPSHOT</version>
+            <version>1.0.3</version>
             <type>apklib</type>
         </dependency>
 
