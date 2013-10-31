@@ -1,0 +1,29 @@
+apply plugin: 'android'
+
+dependencies {
+    compile project(':library')
+    compile "com.android.support:support-v4:[18.0,)"
+    compile('com.jakewharton:butterknife:3.0.+')
+}
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion "18.1.0"
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 18
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+    }
+
+}
+
+apply from: '../maven_push.gradle'
+
