@@ -20,7 +20,7 @@ public class PopupMenuCompat implements OnDismissListener, OnItemClickListener, 
     public static final boolean DEBUG = BuildConfig.DEBUG;
 
     public enum Style {
-        DARK, LIGHT;
+        DARK, LIGHT
     }
 
     private OnMenuItemClickListener mItemClickListener;

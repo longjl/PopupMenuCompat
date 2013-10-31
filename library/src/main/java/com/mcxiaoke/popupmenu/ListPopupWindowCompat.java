@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -45,10 +46,10 @@ import android.widget.PopupWindow;
  * <p>ListPopupWindowCompat contains a number of tricky behaviors surrounding positioning, scrolling
  * parents to fit the dropdown, interacting sanely with the IME if present, and others.
  *
- * @hide
  * @see android.widget.AutoCompleteTextView
  * @see android.widget.Spinner
  */
+@SuppressWarnings("deprecation")
 class ListPopupWindowCompat implements ListPopupWindow {
 
     private static final String TAG = ListPopupWindowCompat.class.getSimpleName();
@@ -182,7 +183,6 @@ class ListPopupWindowCompat implements ListPopupWindow {
      * @param context      Context used for contained views.
      * @param attrs        Attributes from inflating parent views used to style the popup.
      * @param defStyleAttr Default style attribute to use for popup content.
-     *
      */
     public ListPopupWindowCompat(Context context, AttributeSet attrs, int defStyleAttr) {
         mContext = context;
@@ -699,8 +699,10 @@ class ListPopupWindowCompat implements ListPopupWindow {
         if (isShowing() && list != null) {
             list.mListSelectionHidden = false;
             list.setSelection(position);
-            if (list.getChoiceMode() != ListView.CHOICE_MODE_NONE) {
-                list.setItemChecked(position, true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                if (list.getChoiceMode() != ListView.CHOICE_MODE_NONE) {
+                    list.setItemChecked(position, true);
+                }
             }
         }
     }
@@ -729,7 +731,7 @@ class ListPopupWindowCompat implements ListPopupWindow {
 
     /**
      * @return {@code true} if this popup is configured to assume the user does not need to interact
-     *         with the IME while it is showing, {@code false} otherwise.
+     * with the IME while it is showing, {@code false} otherwise.
      */
     @Override
     public boolean isInputMethodNotNeeded() {
@@ -741,7 +743,7 @@ class ListPopupWindowCompat implements ListPopupWindow {
      *
      * @param position Adapter position for performing the click
      * @return true if the click action could be performed, false if not. (e.g. if the popup was not
-     *         showing, this method would return false.)
+     * showing, this method would return false.)
      */
     @Override
     public boolean performItemClick(int position) {
@@ -770,7 +772,7 @@ class ListPopupWindowCompat implements ListPopupWindow {
 
     /**
      * @return The position of the currently selected item or {@link android.widget.ListView#INVALID_POSITION} if
-     *         {@link #isShowing()} == {@code false}.
+     * {@link #isShowing()} == {@code false}.
      * @see android.widget.ListView#getSelectedItemPosition()
      */
     @Override
@@ -783,7 +785,7 @@ class ListPopupWindowCompat implements ListPopupWindow {
 
     /**
      * @return The ID of the currently selected item or {@link android.widget.ListView#INVALID_ROW_ID} if {@link
-     *         #isShowing()} == {@code false}.
+     * #isShowing()} == {@code false}.
      * @see android.widget.ListView#getSelectedItemId()
      */
     @Override
@@ -796,7 +798,7 @@ class ListPopupWindowCompat implements ListPopupWindow {
 
     /**
      * @return The View for the currently selected item or null if {@link #isShowing()} == {@code
-     *         false}.
+     * false}.
      * @see android.widget.ListView#getSelectedView()
      */
     @Override
@@ -809,7 +811,7 @@ class ListPopupWindowCompat implements ListPopupWindow {
 
     /**
      * @return The {@link android.widget.ListView} displayed within the popup window. Only valid when {@link
-     *         #isShowing()} == {@code true}.
+     * #isShowing()} == {@code true}.
      */
     @Override
     public ListView getListView() {
@@ -1232,7 +1234,7 @@ class ListPopupWindowCompat implements ListPopupWindow {
          * @param position The starting position to look at.
          * @param lookDown Whether to look down for other positions.
          * @return The next selectable position starting at position and then searching either up or
-         *         down. Returns {@link #INVALID_POSITION} if nothing can be found.
+         * down. Returns {@link #INVALID_POSITION} if nothing can be found.
          */
         private int lookForSelectablePosition(int position, boolean lookDown) {
             final ListAdapter adapter = getAdapter();
