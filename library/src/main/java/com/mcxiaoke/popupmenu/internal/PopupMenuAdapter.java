@@ -1,6 +1,7 @@
 package com.mcxiaoke.popupmenu.internal;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,17 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.mcxiaoke.popupmenu.BuildConfig;
 import com.mcxiaoke.popupmenu.R;
 
 import java.util.List;
 
 public final class PopupMenuAdapter extends ArrayAdapterCompat<MenuItem> {
+    public static final String TAG = PopupMenuAdapter.class.getSimpleName();
+    public static final boolean DEBUG = BuildConfig.DEBUG;
 
     private Menu mMenu;
     private LayoutInflater mInflater;
 
     public PopupMenuAdapter(final Context context) {
         super(context);
+        if (DEBUG) {
+            Log.v(TAG, "PopupMenuAdapter()");
+        }
         mInflater = LayoutInflater.from(context);
     }
 
@@ -58,6 +65,9 @@ public final class PopupMenuAdapter extends ArrayAdapterCompat<MenuItem> {
     public void setMenu(final Menu menu) {
         mMenu = menu;
         setMenuItems();
+        if (DEBUG) {
+            Log.v(TAG, "setMenu()");
+        }
     }
 
     public void setMenuItems() {

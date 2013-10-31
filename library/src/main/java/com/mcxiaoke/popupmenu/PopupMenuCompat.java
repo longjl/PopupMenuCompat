@@ -1,6 +1,7 @@
 package com.mcxiaoke.popupmenu;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,10 +12,12 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.PopupWindow.OnDismissListener;
-import com.mcxiaoke.popupmenu.internal.PopupMenuAdapter;
 import com.mcxiaoke.popupmenu.internal.MenuHelper;
+import com.mcxiaoke.popupmenu.internal.PopupMenuAdapter;
 
 public class PopupMenuCompat implements OnDismissListener, OnItemClickListener, OnTouchListener {
+    public static final String TAG = PopupMenuCompat.class.getSimpleName();
+    public static final boolean DEBUG = BuildConfig.DEBUG;
 
     public enum Style {
         DARK, LIGHT;
@@ -38,6 +41,9 @@ public class PopupMenuCompat implements OnDismissListener, OnItemClickListener, 
      * @param context Context
      */
     public PopupMenuCompat(final Context context, final View view) {
+        if (DEBUG) {
+            Log.v(TAG, "PopupMenuCompat()");
+        }
         mContext = context;
         mView = view;
         mMenu = MenuHelper.createMenu(context);
@@ -56,6 +62,9 @@ public class PopupMenuCompat implements OnDismissListener, OnItemClickListener, 
      * Dismiss the popup window.
      */
     public void dismiss() {
+        if (DEBUG) {
+            Log.v(TAG, "dismiss()");
+        }
         if (isShowing()) {
             mWindow.dismiss();
         }
@@ -70,6 +79,9 @@ public class PopupMenuCompat implements OnDismissListener, OnItemClickListener, 
     }
 
     public void inflate(final int menuRes) {
+        if (DEBUG) {
+            Log.v(TAG, "inflate() menuRes=" + menuRes);
+        }
         new MenuInflater(mContext).inflate(menuRes, mMenu);
     }
 
@@ -79,6 +91,9 @@ public class PopupMenuCompat implements OnDismissListener, OnItemClickListener, 
 
     @Override
     public void onDismiss() {
+        if (DEBUG) {
+            Log.v(TAG, "onDismiss()");
+        }
         if (!mDidAction && mDismissListener != null) {
             mDismissListener.onDismiss(this);
         }
@@ -86,6 +101,9 @@ public class PopupMenuCompat implements OnDismissListener, OnItemClickListener, 
 
     @Override
     public void onItemClick(final AdapterView<?> adapter, final View view, final int position, final long id) {
+        if (DEBUG) {
+            Log.v(TAG, "onItemClick() position=" + position + " id=" + id);
+        }
         mDidAction = true;
         dismiss();
         final MenuItem item = mAdapter.getItem(position);
@@ -105,14 +123,15 @@ public class PopupMenuCompat implements OnDismissListener, OnItemClickListener, 
     public boolean onTouch(final View v, final MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_OUTSIDE) {
             mWindow.dismiss();
-
             return true;
         }
-
         return false;
     }
 
     public void setMenu(final Menu menu) {
+        if (DEBUG) {
+            Log.v(TAG, "setMenu()");
+        }
         mMenu = menu;
     }
 
@@ -143,7 +162,13 @@ public class PopupMenuCompat implements OnDismissListener, OnItemClickListener, 
     }
 
     private void showMenu(final Menu menu) {
+        if (DEBUG) {
+            Log.v(TAG, "showMenu() menu=" + menu);
+        }
         mAdapter.setMenu(menu);
+        if (DEBUG) {
+            Log.v(TAG, "showMenu() items=" + mAdapter.getAllItems());
+        }
         try {
             mWindow.show();
         } catch (Exception e) {
