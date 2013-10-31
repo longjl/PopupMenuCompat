@@ -32,7 +32,7 @@
 
         <dependency>
             <groupId>com.mcxiaoke.popupmenu</groupId>
-            <artifactId>samples</artifactId>
+            <artifactId>demo</artifactId>
             <version>1.0.3-SNAPSHOT</version>
             <type>apk</type>
             <scope>provided</scope>
@@ -40,7 +40,7 @@
 
         <dependency>
             <groupId>com.mcxiaoke.popupmenu</groupId>
-            <artifactId>samples</artifactId>
+            <artifactId>demo</artifactId>
             <version>1.0.3-SNAPSHOT</version>
             <type>jar</type>
             <scope>provided</scope>

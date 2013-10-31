@@ -8,7 +8,7 @@
         <version>1.0.3-SNAPSHOT</version>
     </parent>
 
-    <artifactId>samples</artifactId>
+    <artifactId>demo</artifactId>
     <packaging>apk</packaging>
     <name>PopupMenuCompat - Samples</name>
 
@@ -21,7 +21,7 @@
 
         <dependency>
             <groupId>com.mcxiaoke.popupmenu</groupId>
-            <artifactId>library</artifactId>
+            <artifactId>library-apklib</artifactId>
             <version>1.0.3-SNAPSHOT</version>
             <type>apklib</type>
         </dependency>
