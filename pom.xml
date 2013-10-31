@@ -8,7 +8,7 @@
     <packaging>pom</packaging>
     <name>PopupMenuCompat - Parent</name>
     <description>PopupMenuCompat is a Android compat library for PopupMenu.</description>
-    <url>https://github.com/mcxiaoke/oauth-simple</url>
+    <url>https://github.com/mcxiaoke/PopupMenuCompat</url>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
