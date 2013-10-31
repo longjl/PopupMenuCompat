@@ -16,7 +16,7 @@ def isReleaseBuild() {
 
 allprojects {
     group = 'com.mcxiaoke.popupmenu'
-    version = '1.0.2'
+    version = '1.0.3'
 
     repositories {
         maven { url 'http://qaci.intra.douban.com/nexus/content/repositories/central' }

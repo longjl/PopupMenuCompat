@@ -57,7 +57,7 @@ class ListPopupWindowCompat implements ListPopupWindow {
 
     /**
      * This value controls the length of time that the user must leave a pointer down without
-     * scrolling to expand the autocomplete dropdown list to cover the IME.
+     * scrolling to expand the autoComplete dropdown list to cover the IME.
      */
     private static final int EXPAND_LIST_TIMEOUT = 250;
 
@@ -162,7 +162,7 @@ class ListPopupWindowCompat implements ListPopupWindow {
      * @param context Context used for contained views.
      */
     public ListPopupWindowCompat(Context context) {
-        this(context, null, R.attr.listPopupWindowStyle);
+        this(context, null, R.attr.pmPopupWindowStyle);
     }
 
     /**
@@ -173,7 +173,7 @@ class ListPopupWindowCompat implements ListPopupWindow {
      * @param attrs   Attributes from inflating parent views used to style the popup.
      */
     public ListPopupWindowCompat(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.listPopupWindowStyle);
+        this(context, attrs, R.attr.pmPopupWindowStyle);
     }
 
     /**
@@ -1223,7 +1223,7 @@ class ListPopupWindowCompat implements ListPopupWindow {
          * @param context this view's context
          */
         public DropDownListView(Context context, boolean hijackFocus) {
-            super(context, null, R.attr.dropDownListViewStyle);
+            super(context, null, R.attr.pmDropDownListViewStyle);
             mHijackFocus = hijackFocus;
             setCacheColorHint(0); // Transparent, since the background drawable could be anything.
         }

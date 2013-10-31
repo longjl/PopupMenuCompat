@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="PopupMenuCompatStyle" parent="android:Widget"></style>
+    <style name="PopupMenuCompatStyle" parent="android:Widget" />
 
-    <style name="PopupMenuCompatStyle.DropDownListView">
-    </style>
+    <style name="PopupMenuCompatStyle.DropDownListView" />
 
     <style name="PopupMenuCompatStyle.DropDownListView.Dark">
         <item name="android:divider">@drawable/list_divider_holo_dark</item>

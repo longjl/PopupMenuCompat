@@ -2,12 +2,12 @@
 <resources>
 
     <style name="AppTheme.Dark" parent="android:Theme">
-        <item name="listPopupWindowStyle">@style/PopupMenuCompatStyle.ListPopupWindow.Dark</item>
-        <item name="dropDownListViewStyle">@style/PopupMenuCompatStyle.DropDownListView.Dark</item>
+        <item name="pmPopupWindowStyle">@style/PopupMenuCompatStyle.ListPopupWindow.Dark</item>
+        <item name="pmDropDownListViewStyle">@style/PopupMenuCompatStyle.DropDownListView.Dark</item>
     </style>
 
     <style name="AppTheme.Light" parent="android:Theme.Light">
-        <item name="listPopupWindowStyle">@style/PopupMenuCompatStyle.ListPopupWindow.Light</item>
-        <item name="dropDownListViewStyle">@style/PopupMenuCompatStyle.DropDownListView.Light</item>
+        <item name="pmPopupWindowStyle">@style/PopupMenuCompatStyle.ListPopupWindow.Light</item>
+        <item name="pmDropDownListViewStyle">@style/PopupMenuCompatStyle.DropDownListView.Light</item>
     </style>
 </resources>

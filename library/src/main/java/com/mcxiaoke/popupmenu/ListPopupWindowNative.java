@@ -1,7 +1,9 @@
 package com.mcxiaoke.popupmenu;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.PopupWindow;
  * Date: 13-10-3
  * Time: 下午2:09
  */
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 class ListPopupWindowNative implements ListPopupWindow {
 
     private android.widget.ListPopupWindow mListPopupWindow;
@@ -25,6 +28,7 @@ class ListPopupWindowNative implements ListPopupWindow {
      *
      * @param context Context used for contained views.
      */
+
     public ListPopupWindowNative(Context context) {
         mListPopupWindow = new android.widget.ListPopupWindow(context);
     }
